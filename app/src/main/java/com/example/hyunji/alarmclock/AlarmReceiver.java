@@ -25,14 +25,17 @@ public class AlarmReceiver extends BroadcastReceiver{
         //tells the app which value the user picked from the drop down menu/spinner
         int getSelectedAlarmSound = intent.getExtras().getInt("soundChoice");
 
-        Toast.makeText(context, "Selected Sound Id is :" + getSelectedAlarmSound, Toast.LENGTH_SHORT).show();
 
+
+        Log.e("The Alarm Sound Choice is : ", Integer.toString(getSelectedAlarmSound));
         //Create an intent to the alarm sound
         Intent serviceIntent = new Intent(context, AlarmSoundService.class);
 
         //pass the extra string from Main Activity to the AlarmSoundService
 
         serviceIntent.putExtra("extra", getYourString);
+
+        serviceIntent.putExtra("extraSound", getSelectedAlarmSound);
         //Strat the alarm sound service
         context.startService(serviceIntent);
 

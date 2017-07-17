@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -22,7 +23,7 @@ import android.widget.Toast;
 
 import static android.R.attr.id;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class MainActivity extends AppCompatActivity {
 
     // to make alarm manager
     AlarmManager alarmManager;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private TextView updateText;
     Context context;
     private PendingIntent pendingIntent;
+    private Spinner spinner;
     int selectedAlarmSound;
 
 
@@ -61,23 +63,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
         //create the spinner in the main UI
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        //Create an ArrayAdapter using the string array and a default spinner layout
-//        String[] mTestArray; //test
-//        mTestArray =   getResources().getStringArray(R.array.alarmSounds); //test
+        spinner = (Spinner) findViewById(R.id.spinner);
 
 
-//        Toast.makeText(context, "alarmSounds Array: " + Arrays.toString(mTestArray), Toast.LENGTH_LONG).show();
+        spinner.setOnItemSelectedListener(new OnItemSelectedListener(){
 
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedAlarmSound = i;
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this, R.array.alarmSounds, android.R.layout.simple_spinner_item);
-        //Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
-        //set an onClick listne to the onItemSelected method
-        spinner.setOnItemSelectedListener(this);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+
+        });
 
 
         //initialize the start button
@@ -187,17 +189,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         inst = this;
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        //An item was selected. You can retrieve the selected item using parent.getItemAtPosition(pos)
-        //outputing  the id the user has selected
-        selectedAlarmSound = (int) id;
+//    @Override
+//    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//        //An item was selected. You can retrieve the selected item using parent.getItemAtPosition(pos)
+//        //outputing  the id the user has selected
+//        selectedAlarmSound = (int) id;
+//
+//    }
 
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-        //Another interface callback
-
-    }
+//    @Override
+//    public void onNothingSelected(AdapterView<?> adapterView) {
+//        //Another interface callback
+//
+//    }
 }

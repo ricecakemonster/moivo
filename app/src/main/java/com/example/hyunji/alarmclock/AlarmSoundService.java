@@ -22,6 +22,8 @@ public class AlarmSoundService extends Service {
 
     MediaPlayer mediaSong;
     boolean isOn;
+    int soundSource;
+
 
 
     @Nullable
@@ -82,12 +84,30 @@ public class AlarmSoundService extends Service {
 
         //if there's no music playing, and the user pressed "alarm on"
         //music should start playing
+
+//        String state = intent.getExtras().getString("extra");
+
+        int soundNum = intent.getExtras().getInt("extraSound");
+
+        Log.e("inside Alarm sound service: ", String.valueOf(soundNum));
+
         if (!this.isOn && startId == 1){
             Log.e("there is no music, ", "and you want start");
 
             //create an instance of the media player
 
-            mediaSong = MediaPlayer.create(this, R.raw.legomovie);
+            switch (soundNum) {
+                case 0:
+                    mediaSong = MediaPlayer.create(this, R.raw.banana);
+                    break;
+                case 1:
+                    mediaSong = MediaPlayer.create(this, R.raw.legomovie);
+                    break;
+                case 2:
+                    mediaSong = MediaPlayer.create(this, R.raw.minion);
+                    break;
+            }
+
             mediaSong.start();
             this.isOn = true;
             startId = 0;

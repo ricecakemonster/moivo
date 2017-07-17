@@ -4,9 +4,9 @@
 
 
     <string-array name="alarmSounds">
-        <item>minion</item>
         <item>banana</item>
         <item>legomovie</item>
+        <item>minion</item>
     </string-array>
 
 </resources>

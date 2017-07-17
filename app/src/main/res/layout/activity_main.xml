@@ -61,6 +61,7 @@
         android:layout_width="344dp"
         android:layout_height="60dp"
         android:layout_marginTop="133dp"
+        android:entries="@array/alarmSounds"
         app:layout_constraintTop_toBottomOf="@+id/timePicker"
         tools:layout_editor_absoluteX="8dp" />
 
