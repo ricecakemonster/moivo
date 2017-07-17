@@ -13,12 +13,19 @@ public class AlarmReceiver extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.e("MyActivity", "In the receiver");
-        Toast.makeText(context, "Working!", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "Working!", Toast.LENGTH_SHORT).show();
 
         //fetch extra strings from the intent
+        //tells the app whether the user pressed the alarm on button or the alarm off button
         String getYourString = intent.getExtras().getString("extra");
 
         Log.e("What is the key?", getYourString);
+
+        //fetch the extra longs from the intent
+        //tells the app which value the user picked from the drop down menu/spinner
+        int getSelectedAlarmSound = intent.getExtras().getInt("soundChoice");
+
+        Toast.makeText(context, "Selected Sound Id is :" + getSelectedAlarmSound, Toast.LENGTH_SHORT).show();
 
         //Create an intent to the alarm sound
         Intent serviceIntent = new Intent(context, AlarmSoundService.class);

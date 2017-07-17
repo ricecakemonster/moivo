@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">alarmClock</string>
+    <string name="action_settings">Settings</string>
+
+
+    <string-array name="alarmSounds">
+        <item>minion</item>
+        <item>banana</item>
+        <item>legomovie</item>
+    </string-array>
+
 </resources>

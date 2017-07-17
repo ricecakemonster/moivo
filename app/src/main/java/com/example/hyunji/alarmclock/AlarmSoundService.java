@@ -1,10 +1,16 @@
 package com.example.hyunji.alarmclock;
 
+import android.annotation.TargetApi;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -24,6 +30,7 @@ public class AlarmSoundService extends Service {
         return null;
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public int onStartCommand(Intent intent, int flags, int startId){
         Log.e("In Service", "Start Command");
@@ -32,6 +39,7 @@ public class AlarmSoundService extends Service {
         String state = intent.getExtras().getString("extra");
 
         Log.e("AlarmSound state: extra is ", state);
+
 
         //this converts the extra strings from the intent
         //to start IDs, values 0 or 1
@@ -50,6 +58,25 @@ public class AlarmSoundService extends Service {
 
         Log.e("Start Id is", String.valueOf(startId));
 
+        //notification
+        //set up the notification service
+        NotificationManager notificationManager =
+                (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        //set up an intent that goes to the Main Activity
+        Intent intentMainActivity = new Intent(this.getApplicationContext(), MainActivity.class);
+
+        //set up a pending intent (wait till the alarm goes off)
+        PendingIntent pendingIntentMainActivity = PendingIntent.getActivity(this, 0, intentMainActivity, 0);
+
+        // make the notification parameters
+        Notification notificationPopUp = new NotificationCompat.Builder(this)
+                .setContentTitle("Wake Up!")
+                .setContentText("Click me!")
+                .setSmallIcon(R.drawable.clock)
+                .setContentIntent(pendingIntentMainActivity)
+                .setAutoCancel(true) //automatically disappears when you click on it
+                .build();
+
 
         //if else statements
 
@@ -60,10 +87,14 @@ public class AlarmSoundService extends Service {
 
             //create an instance of the media player
 
-            mediaSong = MediaPlayer.create(this, R.raw.banana);
+            mediaSong = MediaPlayer.create(this, R.raw.legomovie);
             mediaSong.start();
             this.isOn = true;
             startId = 0;
+
+
+            //set up the notification start command
+            notificationManager.notify(0, notificationPopUp);
         }
         //if there's music playing, and the user pressed "alarm off"
         //music should stop playing

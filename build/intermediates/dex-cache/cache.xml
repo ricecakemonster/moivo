@@ -12,6 +12,24 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/Hyunji/Documents/Ada/Android/Projects/android_alarm/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="08cc884f76c4f270d490d4b2e006a5b87c07291c">
+        <dex dex="/Users/Hyunji/Documents/Ada/Android/Projects/android_alarm/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_e365231d4427acbb29ffe5f57c85e88982b402e4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Hyunji/Documents/Ada/Android/Projects/android_alarm/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/Hyunji/Documents/Ada/Android/Projects/android_alarm/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_a395e17634e79c5d9aa8a76aae7ef76d3c7d90cc/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/Hyunji/Downloads/alarmClock/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
