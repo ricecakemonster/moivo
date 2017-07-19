@@ -6,23 +6,18 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 
-import java.util.Arrays;
 import java.util.Calendar;
-import android.os.Build;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
-
-import static android.R.attr.id;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     private PendingIntent pendingIntent;
     private Spinner spinner;
     int selectedAlarmSound;
+    int hour;
+    int minute;
+    Calendar myCal;
 
 
     MainActivity inst;
@@ -45,15 +43,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         this.context = this;
-        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
         updateText = (TextView) findViewById(R.id.updateText);
 
-        final Calendar myCal = Calendar.getInstance();
-
-        final Intent myIntent = new Intent(MainActivity.this, AlarmReceiver.class);
-
         spinner = (Spinner) findViewById(R.id.spinner);
-
 
         spinner.setOnItemSelectedListener(new OnItemSelectedListener(){
 
@@ -70,18 +63,15 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-        Button alarmOn = (Button) findViewById(R.id.alarmOn);
+        myCal = Calendar.getInstance();
 
+        Button setTime = (Button) findViewById(R.id.setTime);
 
-
-        alarmOn.setOnClickListener(new View.OnClickListener(){
-
+        setTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                int hour = myCal.get(Calendar.HOUR_OF_DAY);
-                int minute = myCal.get(Calendar.MINUTE);
 
 
                 TimePickerDialog.OnTimeSetListener myTimeListener = new TimePickerDialog.OnTimeSetListener(){
@@ -91,32 +81,29 @@ public class MainActivity extends AppCompatActivity {
                             myCal.set(Calendar.HOUR_OF_DAY, hourOfDay);
                             myCal.set(Calendar.MINUTE, minute);
                         }
+                        showTime("Time Selected: ");
+
                     }
                 };
 
                 TimePickerDialog timePickerDialog = new TimePickerDialog(context, 1, myTimeListener, hour, minute, false);
-                timePickerDialog.setTitle("Choose hour:");
+                timePickerDialog.setTitle("Choose Time:");
                 timePickerDialog.show();
 
+            }
+        });
 
 
-                String hourString = String.valueOf(hour);
-                String minuteString = String.valueOf(minute);
+        final Intent myIntent = new Intent(MainActivity.this, AlarmReceiver.class);
 
-                String amPm = "AM";
-                // convert 24 hour time to 12 hour time
-                if (hour > 12) {
-                    hourString = String.valueOf(hour - 12);
-                    amPm = "PM";
-                }
+        Button alarmOn = (Button) findViewById(R.id.alarmOn);
 
-                if (minute < 10) {
-                    minuteString = "0" + String.valueOf(minute);
-                }
+        alarmOn.setOnClickListener(new View.OnClickListener(){
 
+            @Override
+            public void onClick(View view) {
 
-
-                setAlarmText("Alarm set to" + hourString + ":" + minuteString + amPm);
+                showTime("Alarm set for ");
 
                 myIntent.putExtra("onOff", "alarm on");
 
@@ -128,36 +115,47 @@ public class MainActivity extends AppCompatActivity {
                 pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0,
                         myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+
                 alarmManager.set(AlarmManager.RTC_WAKEUP, myCal.getTimeInMillis(), pendingIntent);
 
-
-
             }
         });
 
-        Button alarmOff = (Button) findViewById(R.id.alarmOff);
+        Button cancelAlarm = (Button) findViewById(R.id.cancelAlarm);
 
-        alarmOff.setOnClickListener(new View.OnClickListener(){
-
+        cancelAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setAlarmText("Alarm off!");
                 alarmManager.cancel(pendingIntent);
-
-                myIntent.putExtra("onOff", "alarm off");
-
-                myIntent.putExtra("soundChoice", selectedAlarmSound);
-
-                sendBroadcast(myIntent);
+                showTime("Alarm Canceled for ");
             }
         });
-
-
     }
 
     private void setAlarmText(String s) {
         updateText.setText((s));
     }
 
+    private void showTime(String s){
 
+        hour = myCal.get(Calendar.HOUR_OF_DAY);
+        minute = myCal.get(Calendar.MINUTE);
+
+        String hourString = String.valueOf(hour);
+        String minuteString = String.valueOf(minute);
+
+        String amPm = "AM";
+        // convert 24 hour time to 12 hour time
+        if (hour > 12) {
+            hourString = String.valueOf(hour - 12);
+            amPm = "PM";
+        }
+
+        if (minute < 10) {
+            minuteString = "0" + String.valueOf(minute);
+        }
+
+        setAlarmText(s + hourString + ":" + minuteString + amPm);
+
+    }
 }

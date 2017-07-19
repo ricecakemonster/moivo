@@ -7,6 +7,8 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -57,23 +59,28 @@ public class AlarmSoundService extends Service {
 
         Log.e("Start Id is", String.valueOf(startId));
 
-        NotificationManager notificationManager =
-                (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+
 
         //set up an intent that goes to the Main Activity
-        Intent intentMainActivity = new Intent(this.getApplicationContext(), MainActivity.class);
+        Intent intentMainActivity = new Intent(this.getApplicationContext(), PopUp.class);
 
         //set up a pending intent (wait till the alarm goes off)
         PendingIntent pendingIntentMainActivity = PendingIntent.getActivity(this, 0, intentMainActivity, 0);
 
         // make the notification parameters
+        Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         Notification notificationPopUp = new NotificationCompat.Builder(this)
                 .setContentTitle("Wake Up!")
                 .setContentText("Click me!")
                 .setSmallIcon(R.drawable.clock)
                 .setContentIntent(pendingIntentMainActivity)
-                .setAutoCancel(true) //automatically disappears when you click on it
+                .setAutoCancel(true)//automatically disappears when you click on it
+                .setSound(soundUri)
                 .build();
+
+        NotificationManager notificationManager =
+                (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+
 
 
 

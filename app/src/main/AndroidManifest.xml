@@ -27,6 +27,10 @@
             android:enabled="true">
         </service>
 
+        <activity android:name=".PopUp"
+            android:theme="@style/AppTheme.CustomTheme">
+        </activity>
+
     </application>
 
 </manifest>
