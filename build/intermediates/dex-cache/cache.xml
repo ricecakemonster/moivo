@@ -3,39 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="/Users/Hyunji/Downloads/alarmClock/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jar="/Users/Hyunji/Documents/Ada/Android/Projects/Moivo/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
-        sha1="ab90b62ba1ed4db83a8a5c4abb086ef4f0a35ef9">
-        <dex dex="/Users/Hyunji/Downloads/alarmClock/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c5b78868af5a95a1a032f3a82a9c0c352cb8f9d7/classes.dex" />
+        sha1="20b84182b20d551ca424cdfacbd52f6cab144a95">
+        <dex dex="/Users/Hyunji/Documents/Ada/Android/Projects/Moivo/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_476e6c84f74c285da46458c9c60c61ff03c85497/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/Hyunji/Documents/Ada/Android/Projects/android_alarm/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="08cc884f76c4f270d490d4b2e006a5b87c07291c">
-        <dex dex="/Users/Hyunji/Documents/Ada/Android/Projects/android_alarm/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_e365231d4427acbb29ffe5f57c85e88982b402e4/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Hyunji/Documents/Ada/Android/Projects/android_alarm/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="/Users/Hyunji/Documents/Ada/Android/Projects/Moivo/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="/Users/Hyunji/Documents/Ada/Android/Projects/android_alarm/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_a395e17634e79c5d9aa8a76aae7ef76d3c7d90cc/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Hyunji/Downloads/alarmClock/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="/Users/Hyunji/Downloads/alarmClock/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_197f65ff2365ca4e0b2be708ea8dcf67b695eed2/classes.dex" />
+        <dex dex="/Users/Hyunji/Documents/Ada/Android/Projects/Moivo/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_ee142cef9afe06dd4b6353f82201f650e5dd5908/classes.dex" />
     </item>
 
 </items>
