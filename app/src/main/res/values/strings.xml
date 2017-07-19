@@ -9,4 +9,8 @@
         <item>minion</item>
     </string-array>
 
+    <string name="title_activity_weather">Weather</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
 </resources>

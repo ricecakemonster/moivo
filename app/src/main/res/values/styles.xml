@@ -13,4 +13,27 @@
         <item name="android:windowSwipeToDismiss">true</item>
     </style>
 
+    <style name="FullscreenTheme" parent="AppTheme">
+        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+    </style>
+
+    <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+    <style name="TimePickerDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorControlActivated">@color/black_overlay</item>
+        <item name="colorAccent">@color/black_overlay</item>
+    </style>
+
+    <style name="buttonStyle" parent="@android:style/Widget.Button.Small">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

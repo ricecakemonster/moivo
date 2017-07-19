@@ -19,16 +19,20 @@
         android:layout_marginStart="13dp"
         android:onClick=""
         android:text="Set Alarm"
+        android:background="@drawable/rectangle"
+        style="@style/buttonStyle"
         android:textAppearance="?android:attr/textAppearanceLarge"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/setTime" />
+        app:layout_constraintRight_toLeftOf="@+id/turnOffAlarm" />
 
     <Button
-        android:id="@+id/setTime"
+        android:id="@+id/turnOffAlarm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Set Time"
+        android:background="@drawable/rectangle"
+        style="@style/buttonStyle"
         android:textAppearance="?android:attr/textAppearanceLarge"
         app:layout_constraintTop_toBottomOf="@+id/alarmOn"
         tools:layout_editor_absoluteX="179dp"
@@ -41,6 +45,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cancel"
+        android:background="@drawable/rectangle"
+        style="@style/buttonStyle"
         android:textAppearance="?android:attr/textAppearanceLarge"
         app:layout_constraintTop_toBottomOf="@+id/alarmOn"
         tools:layout_editor_absoluteX="179dp"
@@ -56,20 +62,19 @@
         android:text="Set Your Alarm"
         android:textAppearance="?android:attr/textAppearanceLarge"
         tools:layout_editor_absoluteX="6dp"
-        app:layout_constraintTop_toBottomOf="@+id/setTime" />
+        app:layout_constraintTop_toBottomOf="@+id/turnOffAlarm" />
 
     <Spinner
         android:id="@+id/spinner"
+        style="@style/buttonStyle"
         android:layout_width="344dp"
         android:layout_height="60dp"
         android:entries="@array/alarmSounds"
         tools:layout_editor_absoluteX="8dp"
+        android:layout_marginBottom="78dp"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/alarmOn"
-        android:layout_alignStart="@+id/alarmOn"
-        android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginBottom="75dp" />
+        android:layout_alignStart="@+id/alarmOn" />
 
 
 </RelativeLayout>

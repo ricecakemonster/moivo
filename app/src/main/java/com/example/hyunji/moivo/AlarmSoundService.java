@@ -63,6 +63,8 @@ public class AlarmSoundService extends Service {
 
         //set up an intent that goes to the Main Activity
         Intent intentMainActivity = new Intent(this.getApplicationContext(), PopUp.class);
+        intentMainActivity.putExtra("text", "Turn off Alarm \n and \n Show me the Weather");
+
 
         //set up a pending intent (wait till the alarm goes off)
         PendingIntent pendingIntentMainActivity = PendingIntent.getActivity(this, 0, intentMainActivity, 0);

@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
         myCal = Calendar.getInstance();
 
-        Button setTime = (Button) findViewById(R.id.setTime);
+        Button setTime = (Button) findViewById(R.id.turnOffAlarm);
 
         setTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +96,9 @@ public class MainActivity extends AppCompatActivity {
 
         final Intent myIntent = new Intent(MainActivity.this, AlarmReceiver.class);
 
+        final Intent changeViewIntent = new Intent(MainActivity.this, PopUp.class);
+
+
         Button alarmOn = (Button) findViewById(R.id.alarmOn);
 
         alarmOn.setOnClickListener(new View.OnClickListener(){
@@ -118,6 +121,12 @@ public class MainActivity extends AppCompatActivity {
 
                 alarmManager.set(AlarmManager.RTC_WAKEUP, myCal.getTimeInMillis(), pendingIntent);
 
+                changeViewIntent.putExtra("text", "Alarm is set. \n Do you want to cancel?");
+                Log.e("before staring new Intent", "working");
+                startActivityForResult(changeViewIntent, 100);
+                Log.e("after starting new Intent", "working");
+
+
             }
         });
 
@@ -126,7 +135,10 @@ public class MainActivity extends AppCompatActivity {
         cancelAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                alarmManager.cancel(pendingIntent);
+
+                if (alarmManager!= null) {
+                    alarmManager.cancel(pendingIntent);
+                }
                 showTime("Alarm Canceled for ");
             }
         });
