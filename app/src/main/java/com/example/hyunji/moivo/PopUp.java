@@ -17,14 +17,12 @@ public class PopUp extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        
+
         setContentView(R.layout.popup);
 
         TextView displayText = (TextView) findViewById(R.id.popTextView);
         Intent intent = getIntent();
-////                Student sss = intent.getParcelableExtra("student1");
-////                String str = sss.toString();
-//
+
         String textLine = intent.getStringExtra("text");
 
         displayText.setText(textLine);

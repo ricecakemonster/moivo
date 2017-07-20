@@ -88,6 +88,7 @@ public class AlarmSoundService extends Service {
 
         int soundNum = intent.getExtras().getInt("extraSound");
 
+
         if (!this.isOn && startId == 1){
             Log.e("there is no music, ", "and you want start");
 
@@ -107,6 +108,10 @@ public class AlarmSoundService extends Service {
             this.isOn = true;
             startId = 0;
 
+
+            Intent locationIntent = new Intent(AlarmSoundService.this, WeatherLocation.class);
+            locationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(locationIntent);
 
             notificationManager.notify(0, notificationPopUp);
         }
