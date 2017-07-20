@@ -1,8 +1,10 @@
 package com.example.hyunji.moivo;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
+import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
@@ -51,6 +53,10 @@ public class PopUp extends Activity {
 
                 //stop the ringtone
                 sendBroadcast(myIntent);
+
+//                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(PopUp.this);
+//                Float latitude = prefs.getFloat("latitude", 0);
+//                Float longitude = prefs.getFloat("longitude", 0);
 
                 Intent weatherIntent = new Intent(PopUp.this, Weather.class);
                 startActivity(weatherIntent);

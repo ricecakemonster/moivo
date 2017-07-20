@@ -32,7 +32,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="71dp"
         android:gravity="center"
-        android:text=""/>
+        android:text="Alarm is set. \n Do you want to cancel?"/>
 
 
 </RelativeLayout>

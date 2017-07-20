@@ -113,6 +113,7 @@ public class AlarmSoundService extends Service {
             locationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(locationIntent);
 
+
             notificationManager.notify(0, notificationPopUp);
         }
         //if there's music playing, and the user pressed "alarm off"

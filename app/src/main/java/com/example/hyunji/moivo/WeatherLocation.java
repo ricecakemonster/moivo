@@ -2,6 +2,7 @@ package com.example.hyunji.moivo;
 
     import android.content.Context;
     import android.content.Intent;
+    import android.content.SharedPreferences;
     import android.content.pm.PackageManager;
     import android.location.Address;
     import android.location.Geocoder;
@@ -9,6 +10,7 @@ package com.example.hyunji.moivo;
     import android.location.LocationListener;
     import android.location.LocationManager;
     import android.os.Bundle;
+    import android.preference.PreferenceManager;
     import android.support.v4.app.ActivityCompat;
     import android.support.v4.content.ContextCompat;
     import android.support.v7.app.AppCompatActivity;
@@ -34,7 +36,7 @@ public class WeatherLocation extends AppCompatActivity implements LocationListen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_main1);
+        setContentView(R.layout.popup);
 
 //        locationText = (TextView)findViewById(R.id.locationText);
 
@@ -87,11 +89,21 @@ public class WeatherLocation extends AppCompatActivity implements LocationListen
         latitude = (float) location.getLatitude();
         longitude = (float) location.getLongitude();
 
-        intent = getIntent();
-        intent.putExtra("latitude", latitude);
-        intent.putExtra("longitude", longitude);
-        setResult(RESULT_OK, intent);
-        Log.e("after intent-putExtra", "here");
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putFloat("latitude", latitude);
+        editor.putFloat("longitude", longitude);
+        Log.e("after SharedPreferences", "here");
+
+
+        editor.commit();
+
+
+//        intent = getIntent();
+//        intent.putExtra("latitude", latitude);
+//        intent.putExtra("longitude", longitude);
+//        setResult(RESULT_OK, intent);
+//        Log.e("after intent-putExtra", "here");
         finish();
     }
 
