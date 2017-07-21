@@ -36,7 +36,7 @@ public class WeatherLocation extends AppCompatActivity implements LocationListen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.popup);
+        setContentView(R.layout.activity_main);
 
 //        locationText = (TextView)findViewById(R.id.locationText);
 

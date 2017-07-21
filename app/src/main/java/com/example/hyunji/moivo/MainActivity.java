@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
+
 
         this.context = this;
 
@@ -67,44 +69,26 @@ public class MainActivity extends AppCompatActivity {
 
         myCal = Calendar.getInstance();
 
-        Button setTime = (Button) findViewById(R.id.turnOffAlarm);
-
-        setTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-                TimePickerDialog.OnTimeSetListener myTimeListener = new TimePickerDialog.OnTimeSetListener(){
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute){
-                        if (view.isShown()){
-                            myCal.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                            myCal.set(Calendar.MINUTE, minute);
-                        }
-                        showTime("Time Selected: ");
-
-                    }
-                };
-
-                TimePickerDialog timePickerDialog = new TimePickerDialog(context, 1, myTimeListener, hour, minute, false);
-                timePickerDialog.setTitle("Choose Time:");
-                timePickerDialog.show();
-
-            }
-        });
-
 
         final Intent myIntent = new Intent(MainActivity.this, AlarmReceiver.class);
 
         final Intent changeViewIntent = new Intent(MainActivity.this, PopUp.class);
 
 
-        Button alarmOn = (Button) findViewById(R.id.alarmOn);
+        final Button alarmOn = (Button) findViewById(R.id.alarmOn);
+        final Button cancelAlarm = (Button) findViewById(R.id.cancel);
+        final TimePicker myTimePicker = (TimePicker) findViewById(R.id.timePicker);
+        final TextView alarmSetupTextView = (TextView) findViewById(R.id.alarmSetupTextView);
 
         alarmOn.setOnClickListener(new View.OnClickListener(){
 
             @Override
-            public void onClick(View view) {
+            public void onClick(View view){
+
+                myCal.set(Calendar.HOUR_OF_DAY, myTimePicker.getCurrentHour());
+                myCal.set(Calendar.MINUTE, myTimePicker.getCurrentMinute());
+
+                showTime("Time Selected: ");
 
                 showTime("Alarm set for ");
 
@@ -121,16 +105,16 @@ public class MainActivity extends AppCompatActivity {
 
                 alarmManager.set(AlarmManager.RTC_WAKEUP, myCal.getTimeInMillis(), pendingIntent);
 
-                changeViewIntent.putExtra("text", "Alarm is set. \n Do you want to cancel?");
-                Log.e("before staring new Intent", "working");
-                startActivityForResult(changeViewIntent, 100);
-                Log.e("after starting new Intent", "working");
+//                changeViewIntent.putExtra("text", "Alarm is set. \n Do you want to cancel?");
+//                startActivityForResult(changeViewIntent, 100);
 
-
+                alarmOn.setVisibility(View.INVISIBLE);
+                cancelAlarm.setVisibility(View.VISIBLE);
+                spinner.setVisibility(View.INVISIBLE);
+                alarmSetupTextView.setVisibility(View.INVISIBLE);
             }
         });
 
-        Button cancelAlarm = (Button) findViewById(R.id.cancelAlarm);
 
         cancelAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,7 +123,13 @@ public class MainActivity extends AppCompatActivity {
                 if (alarmManager!= null) {
                     alarmManager.cancel(pendingIntent);
                 }
-                showTime("Alarm Canceled for ");
+//                showTime("Alarm Canceled for ");
+
+                updateText.setText("Alarm Canceled.\nSet New Alarm");
+                alarmOn.setVisibility(View.VISIBLE);
+                cancelAlarm.setVisibility(View.INVISIBLE);
+                spinner.setVisibility(View.VISIBLE);
+                alarmSetupTextView.setVisibility(View.VISIBLE);
             }
         });
     }

@@ -8,7 +8,7 @@
 
 
     <Button
-        android:id="@+id/turnOffAlarm"
+        android:id="@+id/setTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick=""
@@ -16,7 +16,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/turnOffAlarm"
+        app:layout_constraintRight_toLeftOf="@+id/setTime"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="187dp"
@@ -28,11 +28,11 @@
         android:id="@+id/popTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/turnOffAlarm"
+        android:layout_alignBottom="@+id/setTime"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="71dp"
         android:gravity="center"
-        android:text="Alarm is set. \n Do you want to cancel?"/>
+        android:text="Turn off Alarm \n and \n Show me the Weather"/>
 
 
 </RelativeLayout>

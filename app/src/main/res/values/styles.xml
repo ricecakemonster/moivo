@@ -25,14 +25,25 @@
         <item name="android:background">@color/black_overlay</item>
     </style>
 
-    <style name="TimePickerDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="colorControlActivated">@color/black_overlay</item>
-        <item name="colorAccent">@color/black_overlay</item>
+    <!--<style name="TimePickerDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">-->
+        <!--<item name="colorControlActivated">@color/black_overlay</item>-->
+        <!--<item name="colorAccent">@color/black_overlay</item>-->
+        <!--<item name="android:textSize">25sp</item>-->
+
+    <!--</style>-->
+
+    <style name="AppTheme.Picker" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textSize">25dp</item>
+    </style>
+
+    <style name="SpinnerText">
+        <item name="android:textSize">20dp</item>
     </style>
 
     <style name="buttonStyle" parent="@android:style/Widget.Button.Small">
         <item name="android:textColor">#FFFFFF</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 

@@ -1,13 +1,10 @@
 package com.example.hyunji.moivo;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
-import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -22,24 +19,17 @@ public class PopUp extends Activity {
 
         setContentView(R.layout.popup);
 
-        TextView displayText = (TextView) findViewById(R.id.popTextView);
-        Intent intent = getIntent();
 
-        String textLine = intent.getStringExtra("text");
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
 
-        displayText.setText(textLine);
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
 
-
-//        DisplayMetrics dm = new DisplayMetrics();
-//        getWindowManager().getDefaultDisplay().getMetrics(dm);
-//
-//        int width = dm.widthPixels;
-//        int height = dm.heightPixels;
-//
-//        getWindow().setLayout((int) (width * .8), (int) (height * .6));
+        getWindow().setLayout((int) (width * .8), (int) (height * .6));
 
 
-        Button turnOffAlarm = (Button) findViewById(R.id.turnOffAlarm);
+        Button turnOffAlarm = (Button) findViewById(R.id.setTime);
 
         turnOffAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
