@@ -1,21 +1,28 @@
 package com.example.hyunji.moivo;
 
-    import android.os.AsyncTask;
-    import android.util.Log;
-    import org.json.JSONException;
-    import org.json.JSONObject;
-    import java.io.BufferedReader;
-    import java.io.InputStreamReader;
-    import java.net.HttpURLConnection;
-    import java.net.URL;
-    import java.text.DateFormat;
-    import java.util.Date;
-    import java.util.Locale;
+
+     import android.os.AsyncTask;
+     import android.util.Log;
+
+     import org.json.JSONArray;
+     import org.json.JSONException;
+     import org.json.JSONObject;
+
+     import java.io.BufferedReader;
+     import java.io.InputStreamReader;
+     import java.net.HttpURLConnection;
+     import java.net.URL;
+     import java.text.DateFormat;
+     import java.util.Date;
+     import java.util.Locale;
 
 public class Function {
 
+    // Project Created by Ferdousur Rahman Shajib
+    // www.androstock.com
+
     private static final String OPEN_WEATHER_MAP_URL =
-            "http://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&units=metric";
+            "http://api.openweathermap.org/data/2.5/forecast?lat=%s&lon=%s&units=metric";
 
     private static final String OPEN_WEATHER_MAP_API = "2ff191836252d3a7f4c4eeed4a00adfb";
 
@@ -86,21 +93,37 @@ public class Function {
             try {
                 if(json != null){
                     JSONObject details = json.getJSONArray("weather").getJSONObject(0);
+                    Log.e("weather!!!:", String.valueOf(details));
                     JSONObject main = json.getJSONObject("main");
+                    Log.e("main!!!:", String.valueOf(main));
+
                     DateFormat df = DateFormat.getDateTimeInstance();
 
-
-                    String city = json.getString("name").toUpperCase(Locale.US) + ", " + json.getJSONObject("sys").getString("country");
+                    String city = "Seattle";
+//                    String city = json.getString("name").toUpperCase(Locale.US) + ", " + json.getJSONObject("sys").getString("country");
                     String description = details.getString("description").toUpperCase(Locale.US);
-                    String temperature = String.format("%.2f", main.getDouble("temp"))+ "°";
-                    String humidity = main.getString("humidity") + "%";
-                    String pressure = main.getString("pressure") + " hPa";
-                    String updatedOn = df.format(new Date(json.getLong("dt")*1000));
-                    String iconText = setWeatherIcon(details.getInt("id"),
-                            json.getJSONObject("sys").getLong("sunrise") * 1000,
-                            json.getJSONObject("sys").getLong("sunset") * 1000);
+                    Log.e("description!!!:", String.valueOf(description));
 
-                    delegate.processFinish(city, description, temperature, humidity, pressure, updatedOn, iconText, ""+ (json.getJSONObject("sys").getLong("sunrise") * 1000));
+                    String temperature = String.format("%.2f", main.getDouble("temp"))+ "°";
+                    Log.e("temp!!!:", String.valueOf(temperature));
+
+                    String humidity = main.getString("humidity") + "%";
+                    Log.e("humidity!!!:", String.valueOf(humidity));
+
+                    String pressure = main.getString("pressure") + " hPa";
+                    Log.e("pressure!!!:", String.valueOf(pressure));
+
+                    String updatedOn = df.format(new Date(json.getLong("dt")*1000));
+                    Log.e("updatedOn!!!:", String.valueOf(updatedOn));
+
+                    String iconText = setWeatherIcon(details.getInt("id"),
+                            20,
+                            20);
+//                            json.getJSONObject("sys").getLong("sunrise") * 1000,
+//                            json.getJSONObject("sys").getLong("sunset") * 1000);
+
+//                    delegate.processFinish(city, description, temperature, humidity, pressure, updatedOn, iconText, ""+ (json.getJSONObject("sys").getLong("sunrise") * 1000));
+                    delegate.processFinish(city, description, temperature, humidity, pressure, updatedOn, iconText, "");
 
                 }
             } catch (JSONException e) {
@@ -134,15 +157,37 @@ public class Function {
                 json.append(tmp).append("\n");
             reader.close();
 
-            JSONObject data = new JSONObject(json.toString());
+//            JSONObject data = new JSONObject(json.toString());
+            JSONObject originalData = new JSONObject(json.toString());
+//            Log.e("JSON", String.valueOf(data));
+//
+            JSONArray jsonArray = originalData.getJSONArray("list");
+////            Log.e("JSON", String.valueOf(jsonArray));
+            JSONObject dataObject1 = jsonArray.getJSONObject(0);
+//            Log.e("JSON", String.valueOf(dataObject1));
+
+//            JSONArray weatherArray = dataObject1.getJSONArray("weather");
+//            Log.e("JSON", String.valueOf(weatherArray));
+
+
+
+
+
+
+
+
+
+
+//=============================
 
             // This value will be 404 if the request was not
             // successful
-            if(data.getInt("cod") != 200){
-                return null;
-            }
+//            if(data.getInt("cod") != 200){
+//                return null;
+//            }
 
-            return data;
+//            return listObj;
+            return dataObject1;
         }catch(Exception e){
             return null;
         }

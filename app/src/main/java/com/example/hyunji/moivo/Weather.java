@@ -1,5 +1,6 @@
 package com.example.hyunji.moivo;
 
+    import android.content.Intent;
     import android.content.SharedPreferences;
     import android.graphics.Typeface;
     import android.os.Bundle;
@@ -22,6 +23,8 @@ public class Weather extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //        getSupportActionBar().hide();
         setContentView(R.layout.activity_main1);
+        getSupportActionBar().hide();
+
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -34,23 +37,34 @@ public class Weather extends AppCompatActivity {
 
         weatherFont = Typeface.createFromAsset(getAssets(), "fonts/weathericons-regular-webfont.ttf");
         cityField = (TextView)findViewById(R.id.city_field);
-        updatedField = (TextView)findViewById(R.id.updated_field);
-        detailsField = (TextView)findViewById(R.id.details_field);
+//        updatedField = (TextView)findViewById(R.id.updated_field);
+//        detailsField = (TextView)findViewById(R.id.details_field);
         currentTemperatureField = (TextView)findViewById(R.id.current_temperature_field);
-        humidity_field = (TextView)findViewById(R.id.humidity_field);
-        pressure_field = (TextView)findViewById(R.id.pressure_field);
+//        humidity_field = (TextView)findViewById(R.id.humidity_field);
+//        pressure_field = (TextView)findViewById(R.id.pressure_field);
         weatherIcon = (TextView)findViewById(R.id.weather_icon);
         weatherIcon.setTypeface(weatherFont);
+
+
+        //===================
+//
+//
+//        Intent intent = new Intent(Weather.this, Function.class);
+//        intent.putExtra("nowOrFuture", "now");
+
+
+
+        //====================
 
         Function.placeIdTask asyncTask =new Function.placeIdTask(new Function.AsyncResponse() {
             public void processFinish(String weather_city, String weather_description, String weather_temperature, String weather_humidity, String weather_pressure, String weather_updatedOn, String weather_iconText, String sun_rise) {
 
                 cityField.setText(weather_city);
-                updatedField.setText(weather_updatedOn);
-                detailsField.setText(weather_description);
+//                updatedField.setText(weather_updatedOn);
+//                detailsField.setText(weather_description);
                 currentTemperatureField.setText(weather_temperature);
-                humidity_field.setText("Humidity: "+weather_humidity);
-                pressure_field.setText("Pressure: "+weather_pressure);
+//                humidity_field.setText("Humidity: "+weather_humidity);
+//                pressure_field.setText("Pressure: "+weather_pressure);
                 weatherIcon.setText(Html.fromHtml(weather_iconText));
 
             }
@@ -59,6 +73,7 @@ public class Weather extends AppCompatActivity {
         String stringLatitude = String.valueOf(latitude);
         String stringLongitude = String.valueOf(longitude);
         asyncTask.execute(stringLatitude, stringLongitude);
+        Log.e("after asyncTask", "here");
 
 
     }
