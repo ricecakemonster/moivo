@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     Calendar myCal;
 
 
-    MainActivity inst;
 
 
     @Override

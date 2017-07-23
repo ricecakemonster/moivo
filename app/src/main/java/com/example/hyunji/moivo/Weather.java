@@ -14,14 +14,14 @@ package com.example.hyunji.moivo;
 public class Weather extends AppCompatActivity {
     float longitude;
     float latitude;
-    TextView cityField, detailsField, currentTemperatureField, humidity_field, pressure_field, weatherIcon, updatedField;
+    TextView cityField, detailsField, currentTemperatureField, tempAtNoonField, tempComeHomeField,
+            weatherNowIcon, weatherNoonIcon, weatherComingHomeIcon, noonTextView, homeTextView;
     Typeface weatherFont;
     Button button;
     String textLine;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        getSupportActionBar().hide();
         setContentView(R.layout.activity_main1);
         getSupportActionBar().hide();
 
@@ -37,35 +37,41 @@ public class Weather extends AppCompatActivity {
 
         weatherFont = Typeface.createFromAsset(getAssets(), "fonts/weathericons-regular-webfont.ttf");
         cityField = (TextView)findViewById(R.id.city_field);
-//        updatedField = (TextView)findViewById(R.id.updated_field);
-//        detailsField = (TextView)findViewById(R.id.details_field);
         currentTemperatureField = (TextView)findViewById(R.id.current_temperature_field);
-//        humidity_field = (TextView)findViewById(R.id.humidity_field);
-//        pressure_field = (TextView)findViewById(R.id.pressure_field);
-        weatherIcon = (TextView)findViewById(R.id.weather_icon);
-        weatherIcon.setTypeface(weatherFont);
+        tempAtNoonField = (TextView)findViewById(R.id.weatherAtNoon);
+        tempComeHomeField = (TextView) findViewById(R.id.weatherComingHome);
+        weatherNowIcon = (TextView)findViewById(R.id.weatherNow_icon);
+        weatherNoonIcon = (TextView)findViewById(R.id.weatherNoon_icon);
+        weatherComingHomeIcon = (TextView)findViewById(R.id.weatherCH_icon);
+        weatherNowIcon.setTypeface(weatherFont);
+        weatherNoonIcon.setTypeface(weatherFont);
+        weatherComingHomeIcon.setTypeface(weatherFont);
+        noonTextView = (TextView)findViewById(R.id.textView5);
+        homeTextView = (TextView)findViewById(R.id.textView6);
 
 
-        //===================
-//
-//
-//        Intent intent = new Intent(Weather.this, Function.class);
-//        intent.putExtra("nowOrFuture", "now");
 
-
-
-        //====================
-
-        Function.placeIdTask asyncTask =new Function.placeIdTask(new Function.AsyncResponse() {
-            public void processFinish(String weather_city, String weather_description, String weather_temperature, String weather_humidity, String weather_pressure, String weather_updatedOn, String weather_iconText, String sun_rise) {
-
+        Function.placeIdTask asyncTask =new Function.placeIdTask(new Function.AsyncResponse()
+        {
+            public void processFinish(String weather_city, String current_weather_description,
+                                      String current_weather_temperature, String current_weather_iconText,
+                                      String noon_Time, String noon_weather_description,
+                                      String noon_weather_temperature, String noon_weather_iconText,
+                                      String home_Time, String home_weather_description,
+                                      String home_weather_temperature, String home_weather_iconText)
+            {
+                Log.e("icon", current_weather_iconText);
+                Log.e("noonicon", noon_weather_iconText);
+                Log.e("homeicon", home_weather_iconText);
                 cityField.setText(weather_city);
-//                updatedField.setText(weather_updatedOn);
-//                detailsField.setText(weather_description);
-                currentTemperatureField.setText(weather_temperature);
-//                humidity_field.setText("Humidity: "+weather_humidity);
-//                pressure_field.setText("Pressure: "+weather_pressure);
-                weatherIcon.setText(Html.fromHtml(weather_iconText));
+                currentTemperatureField.setText(current_weather_temperature);
+                weatherNowIcon.setText(Html.fromHtml(current_weather_iconText));
+                tempAtNoonField.setText(noon_weather_temperature);
+                weatherNoonIcon.setText(Html.fromHtml(noon_weather_iconText));
+                tempComeHomeField.setText(home_weather_temperature);
+                weatherComingHomeIcon.setText(Html.fromHtml(home_weather_iconText));
+                noonTextView.setText(noon_Time);
+                homeTextView.setText(home_Time);
 
             }
         });
@@ -73,11 +79,13 @@ public class Weather extends AppCompatActivity {
         String stringLatitude = String.valueOf(latitude);
         String stringLongitude = String.valueOf(longitude);
         asyncTask.execute(stringLatitude, stringLongitude);
-        Log.e("after asyncTask", "here");
+
+
 
 
     }
 }
+
 
 
 

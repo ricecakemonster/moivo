@@ -1,151 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_orange_light"
+    android:orientation="vertical"
     tools:context="com.example.hyunji.moivo.MainActivity">
 
+
+    <TextView
+        android:id="@+id/updateText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/timePicker"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_weight=".5"
+        android:autoSizeMaxTextSize="@android:dimen/dialog_min_width_major"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="Set Your Alarm"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="232dp"
+        android:layout_above="@+id/alarmOn"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight=".5"
+        android:measureAllChildren="false"
+        android:paddingTop="10dp"
+        android:theme="@style/AppTheme.Picker"
+        android:timePickerMode="spinner"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/repeat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="0dp"
+        android:layout_weight=".05"
+        android:text="Repeat" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:orientation="vertical"
-        android:weightSum="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_weight=".1"
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/updateText"
-            android:layout_width="match_parent"
+            android:id="@+id/sunday"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/timePicker"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="0dp"
-            android:layout_marginTop="15dp"
-            android:layout_weight="0.16"
-            android:autoSizeMaxTextSize="@android:dimen/dialog_min_width_major"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:text="Set Your Alarm"
-            android:textAlignment="center"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TimePicker
-            android:id="@+id/timePicker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/alarmOn"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="10dp"
-            android:measureAllChildren="false"
-            android:paddingTop="10dp"
-            android:theme="@style/AppTheme.Picker"
-            android:timePickerMode="spinner"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.16">
-
-            <Button
-                android:id="@+id/cancel"
-                style="@style/buttonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_weight="0.16"
-                android:background="@drawable/rectangle"
-                android:onClick=""
-                android:paddingHorizontal="10dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="Cancel"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toTopOf="@+id/spinner"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/timePicker"
-                app:layout_constraintVertical_bias="0.516" />
-
-            <Button
-                android:id="@+id/alarmOn"
-                style="@style/buttonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="0.16"
-                android:background="@drawable/rectangle"
-                android:onClick=""
-                android:paddingHorizontal="10dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="Set Alarm"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                app:layout_constraintBottom_toTopOf="@+id/spinner"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/timePicker"
-                app:layout_constraintVertical_bias="0.516"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/alarmSetupTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="3dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="15dp"
-            android:text="Choose Alarm Sound"
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
+            android:layout_weight="0.88"
+            android:text="S"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
-        <Spinner
-            android:id="@+id/spinner"
-            style="@style/buttonStyle"
-            android:layout_width="match_parent"
+        <CheckBox
+            android:id="@+id/checkBox7"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="3dp"
-            android:layout_weight="0.06"
-            android:background="@android:color/background_light"
-            android:entries="@array/alarmSounds"
-            android:theme="@style/SpinnerText"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="434dp" />
+            android:layout_weight="1"
+            android:text="S"
+            android:textColor="@android:color/white" />
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="M" />
+
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="T" />
+
+        <CheckBox
+            android:id="@+id/checkBox3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="W" />
+
+        <CheckBox
+            android:id="@+id/checkBox4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="T" />
+
+        <CheckBox
+            android:id="@+id/checkBox5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="F" />
+
+        <CheckBox
+            android:id="@+id/checkBox6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="S" />
+
+
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/alarmSetupTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_weight=".1"
+        android:text="Choose Alarm Sound"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
-</android.support.constraint.ConstraintLayout>
+    <Spinner
+        android:id="@+id/spinner"
+        style="@style/buttonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="3dp"
+        android:layout_weight=".1"
+        android:background="@android:color/background_light"
+        android:entries="@array/alarmSounds"
+        android:theme="@style/SpinnerText"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="434dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".15">
+
+        <Button
+            android:id="@+id/cancel"
+            style="@style/buttonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.16"
+            android:background="@drawable/rectangle"
+            android:onClick=""
+            android:paddingHorizontal="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Cancel"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/spinner"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/timePicker"
+            app:layout_constraintVertical_bias="0.516" />
+
+        <Button
+            android:id="@+id/alarmOn"
+            style="@style/buttonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/cancel"
+            android:layout_alignBottom="@+id/cancel"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.16"
+            android:background="@drawable/rectangle"
+            android:onClick=""
+            android:paddingHorizontal="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Set Alarm"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            app:layout_constraintBottom_toTopOf="@+id/spinner"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/timePicker"
+            app:layout_constraintVertical_bias="0.516" />
+    </RelativeLayout>
+
+
+</LinearLayout>
+
+
