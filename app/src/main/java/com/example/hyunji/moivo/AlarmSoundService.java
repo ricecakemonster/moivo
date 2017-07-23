@@ -103,6 +103,7 @@ public class AlarmSoundService extends Service {
                     break;
             }
 
+            mediaSong.setLooping(true);
             mediaSong.start();
             this.isOn = true;
             startId = 0;

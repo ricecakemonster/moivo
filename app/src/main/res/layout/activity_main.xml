@@ -9,24 +9,29 @@
     tools:context="com.example.hyunji.moivo.MainActivity">
 
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_weight=".5" />
+
     <TextView
         android:id="@+id/updateText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/timePicker"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center_vertical|center_horizontal|center"
         android:layout_marginBottom="0dp"
         android:layout_marginTop="0dp"
         android:layout_weight=".5"
         android:autoSizeMaxTextSize="@android:dimen/dialog_min_width_major"
         android:paddingBottom="10dp"
-        android:paddingTop="10dp"
+        android:paddingTop="20dp"
         android:text="Set Your Alarm"
         android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/white"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -54,7 +59,9 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="0dp"
         android:layout_weight=".05"
-        android:text="Repeat" />
+        android:text="Repeat"
+        android:textColor="@color/black_overlay"
+        android:textSize="14sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -69,60 +76,92 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.88"
+            android:background="#00000000"
+            android:onClick="setReapeatAlarmClick"
             android:text="S"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
-            android:textSize="18sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
-        <CheckBox
-            android:id="@+id/checkBox7"
+        <TextView
+            android:id="@+id/monday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.88"
+            android:background="#00000000"
+            android:onClick="setReapeatAlarmClick"
+            android:text="M"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/tuesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.88"
+            android:background="#00000000"
+            android:onClick="setReapeatAlarmClick"
+            android:text="T"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/wednesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.88"
+            android:background="#00000000"
+            android:onClick="setReapeatAlarmClick"
+            android:text="W"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/thursday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.88"
+            android:background="#00000000"
+            android:onClick="setReapeatAlarmClick"
+            android:text="T"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/friday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.88"
+            android:background="#00000000"
+            android:onClick="setReapeatAlarmClick"
+            android:text="F"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/saturday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.88"
+            android:background="#00000000"
+            android:onClick="setReapeatAlarmClick"
             android:text="S"
-            android:textColor="@android:color/white" />
-
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="M" />
-
-        <CheckBox
-            android:id="@+id/checkBox2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="T" />
-
-        <CheckBox
-            android:id="@+id/checkBox3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="W" />
-
-        <CheckBox
-            android:id="@+id/checkBox4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="T" />
-
-        <CheckBox
-            android:id="@+id/checkBox5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="F" />
-
-        <CheckBox
-            android:id="@+id/checkBox6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="S" />
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
 
     </LinearLayout>
@@ -135,13 +174,12 @@
         android:layout_marginBottom="3dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_weight=".1"
         android:text="Choose Alarm Sound"
         android:textAlignment="viewStart"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textColor="@color/black_overlay"
+        android:textSize="14sp" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -217,7 +255,13 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/timePicker"
             app:layout_constraintVertical_bias="0.516" />
+
     </RelativeLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_weight=".5" />
 
 
 </LinearLayout>
