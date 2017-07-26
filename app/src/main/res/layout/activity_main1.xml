@@ -44,19 +44,27 @@
             android:layout_weight="0.30">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/kidView"
                 android:layout_width="156dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.30"
-                android:background="@drawable/kid"
-                app:srcCompat="@drawable/kid" />
+                app:srcCompat="@drawable/summer" />
+
+            <ImageView
+                android:id="@+id/umbrellaView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/umbrella" />
+
         </GridLayout>
 
-        <LinearLayout android:layout_width="110dp"
+        <LinearLayout
+            android:layout_width="110dp"
             android:layout_height="match_parent"
             android:minHeight="119dp"
             android:orientation="vertical"
             android:weightSum="1">
+
             <TextView
                 android:id="@+id/city_field"
                 android:layout_width="match_parent"
@@ -69,140 +77,157 @@
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight=".08" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_weight="0.25"
                 android:orientation="vertical"
                 android:weightSum="1">
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight=".15"
-                android:gravity="center_horizontal"
-                android:text="Now"
-                android:textAlignment="center"
-                android:textColor="@android:color/darker_gray" />
-            <TextView
-                android:id="@+id/current_temperature_field"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_weight=".30"
-                android:paddingBottom="0dp"
-                android:textAlignment="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#FFFFFF"
-                android:textSize="25sp" />
-            <TextView
-                android:id="@+id/weatherNow_icon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_weight=".55"
-                android:gravity="center_horizontal"
-                android:paddingTop="0dp"
-                android:textAlignment="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#FFFFFF"
-                android:textSize="45sp" />
-        </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".15"
+                    android:gravity="center_horizontal"
+                    android:text="Now"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/darker_gray" />
+
+                <TextView
+                    android:id="@+id/current_temperature_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight=".30"
+                    android:paddingBottom="0dp"
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#FFFFFF"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/weatherNow_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_weight=".55"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="0dp"
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#FFFFFF"
+                    android:textSize="45sp" />
+            </LinearLayout>
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight=".04" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_weight=".25"
                 android:orientation="vertical">
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight=".15"
-                android:gravity="center_horizontal"
-                android:text="2pm"
-                android:textAlignment="center"
-                android:textColor="@android:color/darker_gray" />
-            <TextView
-                android:id="@+id/weatherAtNoon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_weight=".30"
-                android:gravity="center_horizontal"
-                android:textAlignment="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#FFFFFF"
-                android:textSize="25sp" />
-            <TextView
-                android:id="@+id/weatherNoon_icon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_weight=".55"
-                android:gravity="center_horizontal"
-                android:textAlignment="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#FFFFFF"
-                android:textSize="45sp" />
-        </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".15"
+                    android:gravity="center_horizontal"
+                    android:text="2pm"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/darker_gray" />
+
+                <TextView
+                    android:id="@+id/weatherAtNoon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight=".30"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#FFFFFF"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/weatherNoon_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_weight=".55"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#FFFFFF"
+                    android:textSize="45sp" />
+            </LinearLayout>
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight=".04" /> <LinearLayout
+                android:layout_weight=".04" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_weight=".25"
                 android:orientation="vertical">
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight=".15"
-                android:gravity="center_horizontal"
-                android:text="5pm"
-                android:textAlignment="center"
-                android:textColor="@android:color/darker_gray" />
-            <TextView
-                android:id="@+id/weatherComingHome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_weight=".30"
-                android:gravity="center_horizontal"
-                android:textAlignment="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#FFFFFF"
-                android:textSize="25sp" />
-            <TextView
-                android:id="@+id/weatherCH_icon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_weight=".55"
-                android:gravity="center_horizontal"
-                android:textAlignment="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#FFFFFF"
-                android:textSize="45sp" />
-        </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".15"
+                    android:gravity="center_horizontal"
+                    android:text="5pm"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/darker_gray" />
+
+                <TextView
+                    android:id="@+id/weatherComingHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight=".30"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#FFFFFF"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/weatherCH_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_weight=".55"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#FFFFFF"
+                    android:textSize="45sp" />
+            </LinearLayout>
+
             <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight=".04" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".04" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

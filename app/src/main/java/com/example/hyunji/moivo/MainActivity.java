@@ -2,24 +2,19 @@ package com.example.hyunji.moivo;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 
-import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
-import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -44,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     Typeface typefaceLorem;
     TextView sunday, monday, tuesday, wednesday, thursday, friday, saturday;
+    TextView repeatButton;
     final ArrayList<String> checkedDays = new ArrayList<>();
     final ArrayList<Integer> checkedDaysNum = new ArrayList<>();
     final ArrayList<Calendar> calendars = new ArrayList<>();
@@ -70,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         thursday = (TextView)findViewById(R.id.thursday);
         friday = (TextView)findViewById(R.id.friday);
         saturday = (TextView)findViewById(R.id.saturday);
+        repeatButton = (TextView)findViewById(R.id.repeat);
 
         updateText = (TextView) findViewById(R.id.updateText);
 
@@ -179,8 +176,11 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-
+    // if the alarm is set for 7pm and it's already 7:01pm = > alarm is set for 7pm tomorrow.
                 if (checkedDays.size() == 0){
+//                    if(myCal.getTimeInMillis() < System.currentTimeMillis()) {
+//                        myCal.add(Calendar.DAY_OF_YEAR, 1);
+//                    }
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                     alarmManager.set(AlarmManager.RTC_WAKEUP, myCal.getTimeInMillis(), pendingIntent);
                     Log.e("where?", "I'm here! No repeating alarms");
@@ -191,10 +191,16 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0; i < checkedDays.size(); i++) {
                         if (checkedDays.size() == 1) {
                             myCal.set(Calendar.DAY_OF_WEEK, checkedDaysNum.get(i));
+                            if(myCal.getTimeInMillis() < System.currentTimeMillis()) {
+                                myCal.add(Calendar.DAY_OF_YEAR, 7);
+                            }
                             calendars.add(myCal);
                         } else if (checkedDays.size() > 1) {
                             calendarArray[i] = (Calendar) myCal.clone();
                             calendarArray[i].set(Calendar.DAY_OF_WEEK, checkedDaysNum.get(i));
+                            if(calendarArray[i].getTimeInMillis() < System.currentTimeMillis()) {
+                                calendarArray[i].add(Calendar.DAY_OF_YEAR, 7);
+                            }
                             calendars.add(calendarArray[i]);
                         }
                     }
@@ -225,6 +231,14 @@ public class MainActivity extends AppCompatActivity {
                 spinner.setVisibility(View.INVISIBLE);
                 myTimePicker.setVisibility(View.INVISIBLE);
                 alarmSetupTextView.setVisibility(View.INVISIBLE);
+                sunday.setVisibility(View.INVISIBLE);
+                monday.setVisibility(View.INVISIBLE);
+                tuesday.setVisibility(View.INVISIBLE);
+                wednesday.setVisibility(View.INVISIBLE);
+                thursday.setVisibility(View.INVISIBLE);
+                friday.setVisibility(View.INVISIBLE);
+                saturday.setVisibility(View.INVISIBLE);
+                repeatButton.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -241,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                /// ++++++++버튼 두개로 나누기 (전체 알람 취소와 현재 알람 끄기)
+                /// 전체 알람 취소
                 showTime("Alarm Canceled for ");
 
                 updateText.setText("Alarm Canceled.\nSet New Alarm");
@@ -253,6 +267,7 @@ public class MainActivity extends AppCompatActivity {
                 checkedDays.clear();
             }
         });
+
     }
 
     public void setReapeatAlarmClick(View view) {

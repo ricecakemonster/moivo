@@ -3,21 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="/Users/Hyunji/Documents/Ada/Android/Projects/Moivo/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="0fcde2d2fc9992c85b18462513e3e83b6fe3619b">
-        <dex dex="/Users/Hyunji/Documents/Ada/Android/Projects/Moivo/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_476e6c84f74c285da46458c9c60c61ff03c85497/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/Hyunji/Documents/Ada/Android/Projects/Moivo/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
         <dex dex="/Users/Hyunji/Documents/Ada/Android/Projects/Moivo/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_ee142cef9afe06dd4b6353f82201f650e5dd5908/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Hyunji/Documents/Ada/Android/Projects/Moivo/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="0fcde2d2fc9992c85b18462513e3e83b6fe3619b">
+        <dex dex="/Users/Hyunji/Documents/Ada/Android/Projects/Moivo/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_476e6c84f74c285da46458c9c60c61ff03c85497/classes.dex" />
     </item>
 
 </items>

@@ -1,5 +1,8 @@
 package com.example.hyunji.moivo;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,6 +17,10 @@ import java.util.Locale;
 
 
 public class Function {
+    static double tempNow;
+    static double tempNoon;
+    static double tempHome;
+    static Context context;
     private static final String OPEN_WEATHER_CURRENT_URL =
             "http://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&units=metric";
     private static final String OPEN_WEATHER_FORECAST_URL =
@@ -25,23 +32,23 @@ public class Function {
         if(actualId == 800){
             long currentTime = new Date().getTime();
             if(currentTime>=sunrise && currentTime<sunset) {
-                icon = "&#xf00d;";
+                icon = "&#xf00d;"; //sunny
             } else {
-                icon = "&#xf02e;";
+                icon = "&#xf02e;"; //clear night
             }
         } else {
             switch(id) {
-                case 2 : icon = "&#xf01e;";
+                case 2 : icon = "&#xf01e;"; //thunderstorm
                     break;
-                case 3 : icon = "&#xf01c;";
+                case 3 : icon = "&#xf01c;"; //sprinkle
                     break;
-                case 7 : icon = "&#xf014;";
+                case 7 : icon = "&#xf014;"; //fog
                     break;
-                case 8 : icon = "&#xf013;";
+                case 8 : icon = "&#xf013;"; //cloudy
                     break;
-                case 6 : icon = "&#xf01b;";
+                case 6 : icon = "&#xf01b;"; //snow
                     break;
-                case 5 : icon = "&#xf019;";
+                case 5 : icon = "&#xf019;"; //rain
                     break;
             }
         }
@@ -49,7 +56,7 @@ public class Function {
     }
 
     public interface AsyncResponse {
-        void processFinish(String output1, String output2, String output3, String output4, String output5, String output6, String output7, String output8, String output9, String output10, String output11, String output12);
+        void processFinish(String output1, String output2, String output3, String output4, String output5, String output6, String output7, String output8, String output9, String output10, String output11, String output12, double output13, double output14, double output15);
     }
 
     public static class placeIdTask extends AsyncTask<String, Void, JSONObject> {
@@ -103,9 +110,13 @@ public class Function {
                     String timeHome = df1.format(new Date(home.getLong("dt")*1000));
                     Log.e("test", "working");
 
+                    tempNow = main.getDouble("temp");
+                    tempNoon = mainNoon.getDouble("temp");
+                    tempHome = mainHome.getDouble("temp");
+
                     delegate.processFinish(city, descriptionNow, temperatureNow, iconTextNow, timeNoon,
                             descriptionNoon, temperatureNoon, iconTextNoon, timeHome, descriptionHome, temperatureHome,
-                            iconTextHome);
+                            iconTextHome, tempNow, tempNoon, tempHome);
 
                 }
 

@@ -64,6 +64,7 @@
         android:textSize="14sp" />
 
     <LinearLayout
+        android:id="@+id/daysLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
