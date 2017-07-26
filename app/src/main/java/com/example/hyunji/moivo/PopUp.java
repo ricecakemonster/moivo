@@ -1,5 +1,7 @@
 package com.example.hyunji.moivo;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
@@ -50,6 +52,9 @@ public class PopUp extends Activity {
 
                 Intent weatherIntent = new Intent(PopUp.this, Weather.class);
                 startActivity(weatherIntent);
+
+                NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                nm.cancelAll();
 
             }
         });
