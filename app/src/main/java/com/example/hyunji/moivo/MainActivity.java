@@ -14,6 +14,7 @@ import java.util.List;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -121,12 +122,23 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
 
-                myCal.set(Calendar.HOUR_OF_DAY, myTimePicker.getCurrentHour());
-                myCal.set(Calendar.MINUTE, myTimePicker.getCurrentMinute());
+
+                myIntent.putExtra("onOff", "alarm on");
+
+                myIntent.putExtra("soundChoice", selectedAlarmSound);
+
+                if (Build.VERSION.SDK_INT >= 23) {
+                    myCal.set(Calendar.HOUR_OF_DAY, myTimePicker.getHour());
+                    myCal.set(Calendar.MINUTE, myTimePicker.getMinute());
+
+                } else {
+                    myCal.set(Calendar.HOUR_OF_DAY, myTimePicker.getCurrentHour());
+                    myCal.set(Calendar.MINUTE, myTimePicker.getCurrentMinute());
+                }
 
 
                 String[] dayTextViewArray = {"sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"};
-//                calendarArray = {myCal, myCal1, myCal2, myCal3, myCal4, myCal5, myCal6};
+
                 for(int i=0; i<7; i++){
                     String day = String.valueOf(dayTextViewArray[i]);
                     int layoutID = getResources().getIdentifier(day, "id", getPackageName());
@@ -164,14 +176,19 @@ public class MainActivity extends AppCompatActivity {
                         }
                         checkedDays.add(day);
                         checkedDaysNum.add(dayNumber);
-
-
                     }
-
-
-
                 }
-                    for(int i=0; i < checkedDays.size(); i ++) {
+
+
+                if (checkedDays.size() == 0){
+                    pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    alarmManager.set(AlarmManager.RTC_WAKEUP, myCal.getTimeInMillis(), pendingIntent);
+                    Log.e("where?", "I'm here! No repeating alarms");
+                }
+
+                //repeating alarms
+                else {
+                    for (int i = 0; i < checkedDays.size(); i++) {
                         if (checkedDays.size() == 1) {
                             myCal.set(Calendar.DAY_OF_WEEK, checkedDaysNum.get(i));
                             calendars.add(myCal);
@@ -182,35 +199,31 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
 
-                showTime("Alarm set for ");
 
-                myIntent.putExtra("onOff", "alarm on");
+                    for (int i = 0; i < calendars.size(); i++) {
+                        pendingIntent = PendingIntent.getBroadcast(MainActivity.this, i,
+                                myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-                myIntent.putExtra("soundChoice", selectedAlarmSound);
-
-                Log.e("The sound id is", String.valueOf(selectedAlarmSound));
-//                            calendars.add(calendarArray[i]);
-//                            checkedDays.add(day);
-//                            checkedDaysNum.add(dayNumber);
+                        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendars.get(i).getTimeInMillis(), AlarmManager.INTERVAL_DAY * 7, pendingIntent);
+                        Log.e("where?", "I'm here! Repeating alarms");
 
 
-
-                for(int i=0; i<calendars.size(); i++ ){
-                    pendingIntent = PendingIntent.getBroadcast(MainActivity.this, i,
-                            myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-                    alarmManager.set(AlarmManager.RTC_WAKEUP, calendars.get(i).getTimeInMillis(), pendingIntent);
-
+                    }
                 }
 
 
-//                alarmManager.set(AlarmManager.RTC_WAKEUP, myCal.getTimeInMillis(), pendingIntent);
+
+                showTime("Alarm set for ");
+
+
+                Log.e("The sound id is", String.valueOf(selectedAlarmSound));
 
 
 
                 alarmOn.setVisibility(View.INVISIBLE);
                 cancelAlarm.setVisibility(View.VISIBLE);
                 spinner.setVisibility(View.INVISIBLE);
+                myTimePicker.setVisibility(View.INVISIBLE);
                 alarmSetupTextView.setVisibility(View.INVISIBLE);
             }
         });
@@ -222,9 +235,9 @@ public class MainActivity extends AppCompatActivity {
                 pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 1,
                         myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-//                if (alarmManager!= null) {
-//                    alarmManager.cancel(pendingIntent);
-//                }
+                if (alarmManager!= null) {
+                    alarmManager.cancel(pendingIntent);
+                }
 
 
 
@@ -235,6 +248,7 @@ public class MainActivity extends AppCompatActivity {
                 alarmOn.setVisibility(View.VISIBLE);
                 cancelAlarm.setVisibility(View.INVISIBLE);
                 spinner.setVisibility(View.VISIBLE);
+                myTimePicker.setVisibility(View.VISIBLE);
                 alarmSetupTextView.setVisibility(View.VISIBLE);
                 checkedDays.clear();
             }

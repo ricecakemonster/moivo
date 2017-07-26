@@ -116,6 +116,11 @@ public class AlarmSoundService extends Service {
             Intent popupIntent = new Intent(AlarmSoundService.this, PopUp.class);
             popupIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(popupIntent);
+
+
+
+
+
             notificationManager.notify(0, notificationPopUp);
         }
         //if there's music playing, and the user pressed "alarm off"
